@@ -51,5 +51,8 @@ module.exports = class  User extends Sequelize.Model {
             as: 'Followings',   // foreignKey 와 반대되는 모델을 가리킨다 (같은 테이블끼리의 N:M 관계일때 필수)
             through: 'Follow',  // through: 생성할 모델 이름
         });
+
+        // 1 (User) : N (Domain)
+        db.User.hasMany(db.Domain);
     }
 };
