@@ -21,6 +21,7 @@ exports.isNotLoggedIn = (req, res, next) => {
 
 exports.verifyToken = (req, res, next) => {
     try {
+        // 토큰검증 : jwt.verify(토큰, 토큰의 비밀번호);
         req.decode = jwt.verify(req.headers.authorization, process.env.JWT_SECRET);
         return next();
     } catch (error) {
