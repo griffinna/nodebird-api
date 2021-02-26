@@ -28,7 +28,8 @@ router.post('/token', async (req, res) => {
             id: domain.User.id,
             nick: domain.User.nick,
         }, process.env.JWT_SECRET, {
-            expiresIn: '1m',    // 유효기간: 1분
+            expiresIn: '1m',    // 유효기간: 1분 (zeit/ms (https://github.com/zeit/ms) 형식)
+            // expiresIn: 60 * 1000
             issuer: 'nodebird', // 발급자
         });
         return res.json({
