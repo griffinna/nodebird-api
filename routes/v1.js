@@ -94,5 +94,3 @@ router.get('/posts/hashtag/:title', verifyToken, async (req, res) => {
 });
 
 module.exports = router;
-
-module.exports = router;
