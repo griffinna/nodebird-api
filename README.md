@@ -39,3 +39,14 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 ```console
 $ npm i express-rate-limit
 ```
+
+- API 응답 목록  
+
+|응답코드|메세지|
+|---|---|
+200|JSON 데이터입니다.
+401|유효하지않은 토큰입니다.
+410|새로운 버전을 사용하세요.
+419|토큰이 만료되었습니다.
+429|1분에 한 번만 요청할 수 있습니다.
+500~|기타 서버 에러
