@@ -34,3 +34,8 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 그렇지 않으면 401, 419 에러를 응답
 
 > 사용자 권한 확인을 위해 데이터베이스를 사용하지 않으므로 데이터베이스 부담을 줄일 수 있음
+
+# 사용량 제한 구현하기
+```console
+$ npm i express-rate-limit
+```
