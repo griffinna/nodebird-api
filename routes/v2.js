@@ -1,10 +1,16 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const cors = require('cors');
 
 const { verifyToken, apiLimiter } = require('./middlewares');
 const { Domain, User, Post, Hashtag } = require('../models');
 
 const router = express.Router();
+
+// Access-Control-Allow-Origin 헤더가 추가되도록 cors 적용
+router.use(cors({
+    credentials: true,      // 다른 도메인 간 쿠키가 공유
+}));
 
 // 토큰 발급 라우터 (POST /v1/token)
 router.post('/token', async (req, res) => {
