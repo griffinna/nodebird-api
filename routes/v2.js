@@ -1,6 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const url = require('url');
 
 const { verifyToken, apiLimiter } = require('./middlewares');
 const { Domain, User, Post, Hashtag } = require('../models');
@@ -8,9 +9,26 @@ const { Domain, User, Post, Hashtag } = require('../models');
 const router = express.Router();
 
 // Access-Control-Allow-Origin 헤더가 추가되도록 cors 적용
-router.use(cors({
-    credentials: true,      // 다른 도메인 간 쿠키가 공유
-}));
+/*
+    router.use(cors({
+        credentials: true,      // 다른 도메인 간 쿠키가 공유 (Access-Control-Allow-Credentials: true)
+    }));
+*/
+
+// 비밀키 발급시 허용한 도메인을 확인하여, 호스트와 비밀키가 모두 일치할 때만 CORS 허용하도록 함
+router.use(async (req, res, next) => {
+    const domain = await Domain.findOne({
+        where: {host: url.parse(req.get('origin')).host },
+    });
+    if(domain) {
+        cors({
+            origin: req.get('origin'),
+            credentials: true,
+        }) (req, res, next);
+    } else {
+        next();
+    }
+});
 
 // 토큰 발급 라우터 (POST /v1/token)
 router.post('/token', async (req, res) => {
