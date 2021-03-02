@@ -1,5 +1,12 @@
 # nodebird-api
 
+# 추가기능
+[ ] 팔로워 목록 조회 API  
+[ ] 팔로잉 목록 조회 API  
+[ ] 무료/프리미엄 도메인 간 사용량 제한 구분 (apiLimiter 2개 생성, /auth/login 라우터 참조)  
+[ ] 클라이언트용 비밀키와 서버용 비밀키를 구분하여 발급 (Domain 모델 수정)  
+[ ] 클라이언트를 위한 API 문서 작성 (swagger, apidoc) 
+
 ## JWT 토큰으로 인증하기 (Json Web Token)
 [JWT 공식문서](https://www.npmjs.com/package/jsonwebtoken)
 - HEADER: 토큰 종류와 해시 알고리즘 정보가 들어있음
